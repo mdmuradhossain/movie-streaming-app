@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragment.html :: headerfiles">
+<meta charset="ISO-8859-1">
+<title>Movie Streaming</title>
+</head>
+<body>
+	<header th:insert="fragment.html::nav"></header>
+
+	<script th:replace="fragment.html::jquery"></script>
+	<script th:replace="fragment.html::js"></script>
+	<script th:replace="fragment.html::main"></script>
+</body>
+</html>

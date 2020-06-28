@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:fragment="headerfiles">
+<meta charset="ISO-8859-1">
+<title></title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+
+	
+	<th:block layout:fragment="script">
+		<script th:src="@{/js/jquery.min.js}" th:fragment="jquery"></script>
+		<script th:src="@{/js/bootstrap.min.js}" th:fragment="js"></script>
+		<script type="text/javascript" th:fragment="main">
+			console.log("murad");
+		</script>
+	</th:block>
+
+</body>
+</html>

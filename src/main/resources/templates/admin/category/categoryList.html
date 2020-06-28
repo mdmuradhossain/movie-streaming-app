@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="htpp://www.thymeleaf.org">
+<head th:insert="fragment.html :: headerfiles">
+<meta charset="ISO-8859-1">
+<title>Category List</title>
+</head>
+<body>
+	<header>
+		<div class="row">
+			<div class="col-md-4">
+				<nav th:replace="fragment.html::brand"></nav>
+				<nav th:replace="fragment.html::listNav"></nav>
+			</div>
+			<div class="col-md-8">
+				<nav th:replace="fragment.html::topNav"></nav>
+				<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Category Name</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="category : ${categories}">
+      <td th:text="${category.name}"></td>
+      <td><a href="" class="btn btn-warning">Edit</a></td>
+      <td><a href="" class="btn btn-danger">Delete</a></td>
+    </tr>
+  </tbody>
+</table>
+<a th:href="@{/category/showCategoryForm}" class="btn btn-primary">Add Category</a>
+			</div>
+		</div>
+	</header>
+</body>
+</html>

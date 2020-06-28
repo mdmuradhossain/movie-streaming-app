@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="htpp://www.thymeleaf.org">
+<head th:insert="fragment.html :: headerfiles">
+<meta charset="ISO-8859-1">
+<title>Movie Form</title>
+</head>
+<body>
+	<header>
+		<div class="row">
+			<div class="col-md-4">
+				<nav th:replace="fragment.html::brand"></nav>
+				<nav th:replace="fragment.html::listNav"></nav>
+			</div>
+			<div class="col-md-8">
+				<nav th:replace="fragment.html::topNav"></nav>
+				<form th:action="@{/movie/uploadMovie}" method="POST"
+					enctype="multipart/form-data" th:object="${movie}">
+					<div class="form-group">
+						<label for="movieTitle">Title</label> <input type="text"
+							class="form-control" id="" placeholder="Movie Title"
+							th:field="*{title}">
+					</div>
+					<div class="form-group">
+						<label for="movieDescription">Description</label>
+						<textarea class="form-control" id="" rows="3" th:field="*{description}"></textarea>
+					</div>
+					<!--  <div class="form-group">
+						<label for="imdbRating">IMDb Rating</label> <select
+							class="form-control" id="" th:field="*{imdbRating}">
+							<option th:each="imdb : ${imdbRating}" th:value="${imdb}"
+								th:text="${imdb}"></option>
+						</select>
+					</div>-->
+					<div class="form-group">
+						<label for="movieCategory">Category</label> <select
+							class="form-control" id="" name="categoryId">
+							<option th:each="category : ${categories}" th:value="${category.id}"
+								th:text="${category.name}"></option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="movieLanguage">Language</label> <select
+							class="form-control" id="" th:field="*{language}">
+							<option th:value="en">English</option>
+							<option th:value="hin">Hindi</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="movieThumbnail">Featured Image</label> <input
+							type="file" class="form-control" id="" th:field="*{thumbnail}" accept="image/png,image/jpg,image/jpeg">
+					</div>
+					<div class="form-group">
+						<label for="movieThumbnail">Movie</label> <input
+							type="file" class="form-control" id="">
+					</div>
+					<button class="btn btn-success">Upload Movie</button>
+				</form>
+			</div>
+		</div>
+	</header>
+</body>
+</html>
