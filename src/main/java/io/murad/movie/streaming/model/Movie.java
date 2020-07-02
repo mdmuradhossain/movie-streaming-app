@@ -15,85 +15,85 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.sun.istack.NotNull;
+
 @Entity
 @Table(name = "movie")
 public class Movie {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@NotNull
 	@Column(name = "id")
-	private int id;
-	
+	private Long id;
+
+	@NotNull
 	@Column(name = "title")
 	private String title;
-	
+
 	@Column(name = "description")
 	private String description;
-	
-	@Column(name = "featured_image")
+
+	@Column(name = "featured_image", nullable = true)
 	private String thumbnail;
-	
-	public String getThumbnail() {
-		return thumbnail;
-	}
 
-	public void setThumbnail(String thumbnail) {
-		this.thumbnail = thumbnail;
-	}
+//	public byte[] getImageFile() {
+//		return imageFile;
+//	}
+//
+//	public void setImageFile(byte[] imageFile) {
+//		this.imageFile = imageFile;
+//	}
+//
+//	@Lob
+//	@Column(name = "image_file",length = Integer.MAX_VALUE,nullable = true)
+//	private byte[] imageFile;
+	@Column(name = "video_name",nullable = true)
+	private String video;
+	// private date releaseYear;
+	// private string directorName;
 
-	public byte[] getImageFile() {
-		return imageFile;
-	}
-
-	public void setImageFile(byte[] imageFile) {
-		this.imageFile = imageFile;
-	}
-
-	@Lob
-	@Column(name = "image_file",length = Integer.MAX_VALUE,nullable = true)
-	private byte[] imageFile;
-	//private String file;
-	
 	@Column(name = "imdb_rating")
 	private String imdbRating;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
-    private Category category;
-	
+	@JoinColumn(name = "category_id", referencedColumnName = "id")
+	private Category category;
+
 	@Column(name = "lang")
 	private String language;
-	
+
 	@DateTimeFormat
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
-	
+
 	@DateTimeFormat
 	@Column(name = "updated_at")
 	private LocalDateTime updatedAt;
 
 	public Movie() {
-		
+
 	}
 
-	public Movie(int id, String title, String description, byte[] imageFile, String imdbRating, Category category,
-			String language, LocalDateTime createdAt, LocalDateTime updatedAt) {
+	public Movie(Long id, String title, String description, String imdbRating, String thumbnail, String video,
+			Category category, String language, LocalDateTime createdAt, LocalDateTime updatedAt) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
-		this.imageFile = imageFile;
 		this.imdbRating = imdbRating;
+		this.thumbnail = thumbnail;
 		this.category = category;
 		this.language = language;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
+		this.video = video;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -113,13 +113,28 @@ public class Movie {
 		this.description = description;
 	}
 
-
 	public String getImdbRating() {
 		return imdbRating;
 	}
 
 	public void setImdbRating(String imdbRating) {
 		this.imdbRating = imdbRating;
+	}
+
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
+	public String getVideo() {
+		return video;
+	}
+
+	public void setVideo(String video) {
+		this.video = video;
 	}
 
 	public Category getCategory() {
@@ -153,6 +168,5 @@ public class Movie {
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	
-	
+
 }

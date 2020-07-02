@@ -13,8 +13,7 @@
 			</div>
 			<div class="col-md-8">
 				<nav th:replace="fragment.html::topNav"></nav>
-				<form th:action="@{/movie/uploadMovie}" method="POST"
-					enctype="multipart/form-data" th:object="${movie}">
+				<form th:action="@{/movie/uploadMovie}" method="post" enctype="multipart/form-data" th:object="${movie}">
 					<div class="form-group">
 						<label for="movieTitle">Title</label> <input type="text"
 							class="form-control" id="" placeholder="Movie Title"
@@ -24,13 +23,14 @@
 						<label for="movieDescription">Description</label>
 						<textarea class="form-control" id="" rows="3" th:field="*{description}"></textarea>
 					</div>
-					<!--  <div class="form-group">
+					 <div class="form-group">
 						<label for="imdbRating">IMDb Rating</label> <select
 							class="form-control" id="" th:field="*{imdbRating}">
+							<option value="0">choose</option>
 							<option th:each="imdb : ${imdbRating}" th:value="${imdb}"
 								th:text="${imdb}"></option>
 						</select>
-					</div>-->
+					</div>
 					<div class="form-group">
 						<label for="movieCategory">Category</label> <select
 							class="form-control" id="" name="categoryId">
@@ -47,13 +47,13 @@
 					</div>
 					<div class="form-group">
 						<label for="movieThumbnail">Featured Image</label> <input
-							type="file" class="form-control" id="" th:field="*{thumbnail}" accept="image/png,image/jpg,image/jpeg">
+							type="file" class="form-control" id="" name="featured" accept="image/png,image/jpg,image/jpeg">
 					</div>
 					<div class="form-group">
 						<label for="movieThumbnail">Movie</label> <input
-							type="file" class="form-control" id="">
+							type="file" class="form-control" id="" name="film">
 					</div>
-					<button class="btn btn-success">Upload Movie</button>
+					<button class="btn btn-success" type="submit">Upload Movie</button>
 				</form>
 			</div>
 		</div>

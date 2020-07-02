@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import io.murad.movie.streaming.model.Category;
 
-@Repository
 public interface CategoryRepository extends JpaRepository<Category, Long>{
 
 }

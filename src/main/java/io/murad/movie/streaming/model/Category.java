@@ -19,7 +19,7 @@ public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
-	private int id;
+	private Long id;
 	
 	@Column(name = "category_name")
 	private String name;
@@ -35,16 +35,16 @@ public class Category {
 	
 	}
 
-	public Category(int id, String name) {
+	public Category(Long id, String name) {
 		this.id = id;
 		this.name = name;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -59,10 +59,10 @@ public class Category {
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		long result = 1;
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
+		return (int) result;
 	}
 
 	@Override
