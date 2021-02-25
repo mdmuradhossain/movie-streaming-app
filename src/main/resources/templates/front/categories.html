@@ -13,7 +13,7 @@
 			aria-expanded="false">Category</button>
 		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
 			<div th:each="category : ${categories}">
-			    <a class="dropdown-item" href="#" th:text="${category.name}"></a>
+			    <a class="dropdown-item" th:href="@{category/{categoryId}(categoryId=${category.id})}" th:text="${category.name}"></a>
 			</div>
 		</div>
 	</div>

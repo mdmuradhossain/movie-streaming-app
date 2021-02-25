@@ -14,6 +14,7 @@
 			<div class="col-md-8">
 				<nav th:replace="fragment.html::topNav"></nav>
 				<form th:action="@{/movie/uploadMovie}" method="post" enctype="multipart/form-data" th:object="${movie}">
+					<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
 					<div class="form-group">
 						<label for="movieTitle">Title</label> <input type="text"
 							class="form-control" id="" placeholder="Movie Title"

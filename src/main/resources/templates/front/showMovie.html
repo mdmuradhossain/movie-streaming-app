@@ -8,6 +8,10 @@
      <div class="row">
         <div class="col-md-10">
            <h1 th:text="${movie.title}"></h1>
+           <video controls>
+           <source th:src="@{'/videos/'+${movie.video}}"></source>
+           </video>
+           <article th:text="${movie.description}"></article>
         </div>
      </div>
 </body>

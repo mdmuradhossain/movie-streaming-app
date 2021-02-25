@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,12 +25,10 @@ public class Category {
 	@Column(name = "category_name")
 	private String name;
 
-	@OneToMany(
-	        mappedBy = "category",
-	        cascade = CascadeType.PERSIST,
-	        fetch = FetchType.LAZY
-	    )
-	    private Set<Movie> movies;
+	@OneToMany(targetEntity = Movie.class,cascade = CascadeType.ALL,fetch = FetchType.LAZY,
+            mappedBy = "category")
+//	@JoinColumn(name = "movie_id",referencedColumnName = "id")
+	 private Set<Movie> movies;
 	
 	public Category() {
 	

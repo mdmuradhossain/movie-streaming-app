@@ -44,4 +44,11 @@ public class FrontController {
 		model.addAttribute("movie",movie);
 		return "front/showMovie";
 	}
+	
+	@GetMapping("/category/{categoryId}")
+	public String getAllMoviesByCategory(@PathVariable("categoryId") Long categoryId,Model model) {
+		List<Movie> categoryMovies = movieService.findMoviesByCategory(categoryId);
+		model.addAttribute("movies",categoryMovies);
+		return "front/moviesByCategory";
+	}
 }

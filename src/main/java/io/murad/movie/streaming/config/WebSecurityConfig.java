@@ -35,11 +35,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		.authorizeRequests().antMatchers("/").permitAll()
+		.antMatchers("/images/**").permitAll()
+		.antMatchers("/videos/**").permitAll()
 		.antMatchers("/hd/**").permitAll()
 		.antMatchers("/admin/**").hasRole("ADMIN").anyRequest().authenticated()
 		.and()
 		.formLogin().permitAll()
 		.defaultSuccessUrl("/admin/home");
+	
 	}
 
 //	@Bean

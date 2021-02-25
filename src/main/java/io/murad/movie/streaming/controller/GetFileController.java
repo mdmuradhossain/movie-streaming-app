@@ -44,6 +44,7 @@ public class GetFileController {
 				return ResponseEntity.ok().body(byteArrayResource);
 			} catch (IOException e) {
 				e.printStackTrace();
+				e.getMessage();
 			}
 		}
 		return ResponseEntity.badRequest().build();
