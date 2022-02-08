@@ -16,7 +16,7 @@ import io.murad.movie.streaming.service.CategoryService;
 import io.murad.movie.streaming.service.MovieService;
 
 @Controller()
-@RequestMapping("hd")
+@RequestMapping("/hd")
 public class FrontController {
 
 	@Autowired

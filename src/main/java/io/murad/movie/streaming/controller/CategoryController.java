@@ -14,7 +14,7 @@ import io.murad.movie.streaming.model.Category;
 import io.murad.movie.streaming.service.CategoryService;
 
 @Controller
-@RequestMapping("category")
+@RequestMapping("/category")
 public class CategoryController {
 
 	@Autowired

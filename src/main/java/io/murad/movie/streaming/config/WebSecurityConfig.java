@@ -17,56 +17,55 @@ import io.murad.movie.streaming.service.CustomUserDetailsService;
 @Configuration
 @EnableWebSecurity
 @EnableJpaRepositories(basePackageClasses = UserRepository.class)
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
-	
-	@Autowired
-	private CustomUserDetailsService userDetailsService;
-	
-//	@Autowired
-//	private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService)
-		.passwordEncoder(passwordEncoder());
-	}
-	
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http
-		.authorizeRequests().antMatchers("/").permitAll()
-		.antMatchers("/images/**").permitAll()
-		.antMatchers("/videos/**").permitAll()
-		.antMatchers("/hd/**").permitAll()
-		.antMatchers("/admin/**").hasRole("ADMIN").anyRequest().authenticated()
-		.and()
-		.formLogin().permitAll()
-		.defaultSuccessUrl("/admin/home");
-	
-	}
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-//	@Bean
-//	public BCryptPasswordEncoder passwordEncoder() {
-//		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-//		return bCryptPasswordEncoder;
-//	}
-	
-//	@Bean
-//	public PasswordEncoder passwordEncoder() {
-//		return new BCryptPasswordEncoder();
-//	}
-	
-	 private PasswordEncoder passwordEncoder() {
-	        return new PasswordEncoder() {
-	            @Override
-	            public String encode(CharSequence charSequence) {
-	                return charSequence.toString();
-	            }
+    @Autowired
+    private CustomUserDetailsService userDetailsService;
 
-	            @Override
-	            public boolean matches(CharSequence charSequence, String s) {
-	                return true;
-	            }
-	        };
-	    }
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(userDetailsService)
+//                .passwordEncoder(passwordEncoder());
+        auth.inMemoryAuthentication()
+                .withUser("admin")
+                .password(passwordEncoder.encode("admin"))
+                .roles("ADMIN");
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests().antMatchers("/").permitAll()
+                .antMatchers("/images/**").permitAll()
+                .antMatchers("/videos/**").permitAll()
+                .antMatchers("/hd/**").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN").anyRequest().authenticated()
+                .and()
+                .formLogin().permitAll()
+                .defaultSuccessUrl("/admin/home");
+
+    }
+
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+//	 private PasswordEncoder passwordEncoder() {
+//	        return new PasswordEncoder() {
+//	            @Override
+//	            public String encode(CharSequence charSequence) {
+//	                return charSequence.toString();
+//	            }
+//
+//	            @Override
+//	            public boolean matches(CharSequence charSequence, String s) {
+//	                return true;
+//	            }
+//	        };
+//	    }
 }

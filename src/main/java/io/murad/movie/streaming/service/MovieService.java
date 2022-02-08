@@ -14,8 +14,8 @@ public class MovieService {
 	@Autowired
 	private MovieRepository movieRepository;
 
-	public Movie uploadMovie(Movie movie) {
-		return movieRepository.save(movie);
+	public void uploadMovie(Movie movie) {
+		movieRepository.save(movie);
 	}
 
 	public List<Movie> getMovies() {

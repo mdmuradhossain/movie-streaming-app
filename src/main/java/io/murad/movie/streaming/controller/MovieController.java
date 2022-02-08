@@ -35,7 +35,7 @@ import io.murad.movie.streaming.service.CategoryService;
 import io.murad.movie.streaming.service.MovieService;
 
 @Controller
-@RequestMapping("movie")
+@RequestMapping("/movie")
 public class MovieController {
 	
 	private List<String> imdbRatings = new ArrayList<>();
